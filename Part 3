@@ -55,13 +55,16 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
             System.out.println("> Please Enter a Menu Choice #:");
             System.out.println(">   1: Read & Print All Data Items");
             System.out.println(">   2: Write/Add Data Item(s)");
-            System.out.println(">   3: Remove Data Item");
-            System.out.println(">   4: Read/Get Data Item");
-            System.out.println(">   5: OverWrite/Set Data Item");
-            System.out.println(">   6: Uppercase All Data Items");
-            System.out.println(">   7: Lowercase All Data Items");
-            System.out.println(">   8: Capitalize All Data Items");
-            System.out.println(">   9: Quit");
+            System.out.println(">   3: Write/Add Data Item At Specific Index");
+            System.out.println(">   4: Remove Data Item");
+            System.out.println(">   5: Remove Data Item at Specific Index");
+            System.out.println(">   6: Read/Get Data Item");
+            System.out.println(">   7: Check If Item Is Contained in ArrayList");
+            System.out.println(">   8: OverWrite/Set Data Item");
+            System.out.println(">   9: Uppercase All Data Items");
+            System.out.println(">   10: Lowercase All Data Items");
+            System.out.println(">   11: Capitalize All Data Items");
+            System.out.println(">   00: Quit");
             System.out.println("");
             System.out.println("--- --- --- ---");
             System.out.println(">   -999: Secret Menu...");
@@ -80,25 +83,34 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
             else if( userInput_MenuChoice == 2 ){
                 scannerInputTo_AddLst_Mth (items_ObsInArrLst);            
             }
-            else if( userInput_MenuChoice == 3 ){
+             else if( userInput_MenuChoice == 3 ){
+                 scannerInputTo_AddLstIndex_Mth (items_ObsInArrLst);
+                }
+            else if( userInput_MenuChoice == 4 ){
                 scannerInputTo_RemoveLst_Mth (items_ObsInArrLst);            
             }
-            else if( userInput_MenuChoice == 4 ){
+             else if( userInput_MenuChoice == 5 ){
+                scannerInputTo_RemoveLstItem_Mth (items_ObsInArrLst);            
+            }
+            else if( userInput_MenuChoice == 6 ){
                 scannerInputTo_GetLst_Mth (items_ObsInArrLst);            
             }           
-            else if( userInput_MenuChoice == 5 ){
+            else if( userInput_MenuChoice == 7 ){
+                scannerInputTo_ContainsLst_Mth (items_ObsInArrLst);            
+            }    
+            else if( userInput_MenuChoice == 8 ){
                 scannerInputTo_SetLst_Mth (items_ObsInArrLst);            
             }
-            else if( userInput_MenuChoice == 6){
+            else if( userInput_MenuChoice == 9){
                 scannerInputTo_UpperLst_Mth (items_ObsInArrLst);
             }
-            else if( userInput_MenuChoice == 7){
+            else if( userInput_MenuChoice == 10){
                 scannerInputTo_LowerLst_Mth (items_ObsInArrLst);
             }
-            else if( userInput_MenuChoice == 8){
+            else if( userInput_MenuChoice == 11){
                 scannerInputTo_CapitalizeLst_Mth (items_ObsInArrLst);
             }
-            else if( userInput_MenuChoice == 9 ){
+            else if( userInput_MenuChoice == 00 ){
                 continueThisApp_Bool = false;
                 System.out.println("*** Thanks for Trying our App. :)");
             }
@@ -218,7 +230,10 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
         print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
         return;
     }
-       
+    
+    public static void scannerInputTo_AddLstIndex_Mth( ArrayList<String> items_ObsInArrLst_InOut )
+    {
+    }
     // * ArrayList: '.remove( index )'
     //
     public static void scannerInputTo_RemoveLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )
@@ -255,7 +270,9 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
        
         return;
     }  
-   
+    public static void scannerInputTo_RemoveLstItem_Mth(ArrayList<String> items_ObsInArrLst_InOut )
+    {
+    }
     // * ArrayList: '.get( index )'
     //
     public static void scannerInputTo_GetLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )
@@ -289,7 +306,9 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
        
         return;
     }       
-   
+    public static void scannerInputTo_ContainsLst_Mth(  ArrayList<String> items_ObsInArrLst_InOut )
+    {
+    }
     // * ArrayList: '.set( index, item )'
     //
     public static void scannerInputTo_SetLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )

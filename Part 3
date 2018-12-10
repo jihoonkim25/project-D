@@ -1,0 +1,394 @@
+// * HEADER
+// *
+// * App Name: T02_Project_D_VchsCodingDemo_ForIntegers: ArrayLists
+// * Author: Coach Chan, A++ CS, VCHS
+// * Section: 2B, 3B, 4B
+// * Date Created: 2018-1130
+
+// * IMPORTANT NOTES
+//
+// ** Longer, Self-Descriptive Variable-Naming to Minimize Comments
+// *** Still Read Remaining Comments
+// ** Variable Declaration (with any Initialization) at Start of Code for Main and Other Methods
+// ** Workaround Fix: Use more robust 'Integer.parseInt( scanner.nextLine() )' to Capture User's <Enter> Key
+//    (vs. 'scanner.nextInt()' which does not) to handle Multiple Number/String User Entries
+// *** Other robust scanning for User Entries
+//     For Double: 'Double.parseDouble( scanner.nextLine() )'
+//     For String: 'scanner.nextLine()'
+// ** Use BlueJ's Debugger along with its 'Code Pad' to Troubleshoot
+
+// * TODO List: Intern
+//
+// ** 1. Read 'IMPORTANT NOTES' above
+// ** 2. Code-Highlight (Reset Highlight Scheme for each New Methhod) & Understand Main Flow of this App
+// ** 3. Run App & Stress Test to Identify any 'Jolly Rancher' Run-Time Bugs w/ Code & Comments
+// ** 4. Identify, Design, Code & Test 5 Areas for an Improved UX/UI Experience:
+// ***   a. 5 Hi-Priority, 2 Mid-Priority, and any others?
+// ** 5. Document #4 via Coding-Report (Code Header, Listing & Output) and Submit via Work Journal by Deadline
+// ***   a. Code-Highlight
+// ***   b. Coding Assignment Report
+           
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.*;
+
+class T02_Project_D_VchsCodingDemo_ForStrings_AddOn                                                                                                                                                                                                                                                                                                                                     
+{
+    public static void main (String arg[]) throws IOException {
+       
+        // * Main Variable Declaration (with any Initialization)
+        //
+        ArrayList<String> items_ObsInArrLst = new ArrayList<String>();       
+        boolean            continueThisApp_Bool = true;      
+        int                userInput_MenuChoice;                   
+        Scanner            scanner = new Scanner(System.in);                
+       
+        // * Main Code
+        //       
+        while( continueThisApp_Bool )
+        {
+            // * Menu of Choices
+            //
+            System.out.println("* T02_Project_D_VchsCodingDemo_ForStrings: ArrayLists");
+            System.out.println();           
+            System.out.println("> Please Enter a Menu Choice #:");
+            System.out.println(">   1: Read & Print All Data Items");
+            System.out.println(">   2: Write/Add Data Item(s)");
+            System.out.println(">   3: Remove Data Item");
+            System.out.println(">   4: Read/Get Data Item");
+            System.out.println(">   5: OverWrite/Set Data Item");
+            System.out.println(">   6: Uppercase All Data Items");
+            System.out.println(">   7: Lowercase All Data Items");
+            System.out.println(">   8: Capitalize All Data Items");
+            System.out.println(">   9: Quit");
+            System.out.println("");
+            System.out.println("--- --- --- ---");
+            System.out.println(">   -999: Secret Menu...");
+            System.out.println("--- --- --- ---");
+            // * Scan for 'userInput_MenuChoice'
+            //
+            // * IMPORTANT: Use the more robust 'Integer.parseInt( scanner.nextLine() )'
+            // ** to also capture User's <Enter> Key (vs. 'scanner.nextInt()')
+            userInput_MenuChoice = Integer.parseInt( scanner.nextLine() );
+           
+            // * Process 'userInput_MenuChoice'
+            //
+            if( userInput_MenuChoice == 1 ){
+                print_Items_ObsInArrLst_Mth(items_ObsInArrLst);            
+            }
+            else if( userInput_MenuChoice == 2 ){
+                scannerInputTo_AddLst_Mth (items_ObsInArrLst);            
+            }
+            else if( userInput_MenuChoice == 3 ){
+                scannerInputTo_RemoveLst_Mth (items_ObsInArrLst);            
+            }
+            else if( userInput_MenuChoice == 4 ){
+                scannerInputTo_GetLst_Mth (items_ObsInArrLst);            
+            }           
+            else if( userInput_MenuChoice == 5 ){
+                scannerInputTo_SetLst_Mth (items_ObsInArrLst);            
+            }
+            else if( userInput_MenuChoice == 6){
+                scannerInputTo_UpperLst_Mth (items_ObsInArrLst);
+            }
+            else if( userInput_MenuChoice == 7){
+                scannerInputTo_LowerLst_Mth (items_ObsInArrLst);
+            }
+            else if( userInput_MenuChoice == 8){
+                scannerInputTo_CapitalizeLst_Mth (items_ObsInArrLst);
+            }
+            else if( userInput_MenuChoice == 9 ){
+                continueThisApp_Bool = false;
+                System.out.println("*** Thanks for Trying our App. :)");
+            }
+            else if( userInput_MenuChoice == -999){
+                boolean continueSecretMenu_Bool = true;
+                while (continueSecretMenu_Bool) {
+                    System.out.println("> Please Enter a Secret Menu Choice #:");
+                    System.out.println(">   1: Sort All Data Item(s) In Alphabetical Order");
+                    System.out.println(">   2: Sort All Data Item(s) In Reverse Alphabetical Order");
+                    System.out.println(">   3: Exit Secret Menu");
+                    int userInput_SecretMenuChoice = Integer.parseInt(scanner.nextLine());
+                    if (userInput_SecretMenuChoice == 1){
+                        scannerInputTo_SortLst_Mth (items_ObsInArrLst);
+                }
+                    else if (userInput_SecretMenuChoice == 2){
+                        scannerInputTo_ReverseSortLst_Mth (items_ObsInArrLst);
+                }
+                    else if (userInput_SecretMenuChoice == 3){
+                        continueSecretMenu_Bool = false;
+                        System.out.println("*** Exiting Secret Menu~~");
+                        System.out.println();
+                }
+                    else{
+                        System.out.println("*** Invalid Menu Choice. Retry.");
+                }
+            }
+        }
+            else{
+                System.out.println("*** Invalid Menu Choice. Retry.");
+            }              
+        } 
+    }
+   
+ 
+    // * ArrayList: Print All Items and Their Indexes
+    // * ArrayList: 'size()' & 'indexOf( item )'
+    //
+    public static void print_Items_ObsInArrLst_Mth( ArrayList<String> items_ObsInArrLst_In )
+    {
+        // * Local Variable Declaration (with any Initialization)
+        //
+       
+        // * Local Code
+        //
+        System.out.println();
+        System.out.println( "***" );       
+        System.out.println();
+        System.out.println( "Size of ArrayList: " +  items_ObsInArrLst_In.size());
+        System.out.println();
+       
+        // * Iterate/Loop through All Items of ArrayList w/o Need for Index
+        for( String item_Ob_Iterator : items_ObsInArrLst_In )
+        {
+            // * Print Item at Index of ArrayList
+            // * TODO: Clearer Printout: Index vs. Item
+            System.out.println( "Index -  " + items_ObsInArrLst_In.indexOf(item_Ob_Iterator) + " |" + " Item -  " + item_Ob_Iterator);
+        }       
+       
+        System.out.println();
+        System.out.println( "***" );       
+        System.out.println();
+       
+        return;
+    }
+
+    // * ArrayList: Print an Item and Its Index
+    //
+    public static void print_Item_ObInArrLst_Mth( int index_In, String item_In )
+    {
+        // * Local Variable Declaration (with any Initialization)
+        //
+       
+        // * Local Code
+        //
+        System.out.println();
+        System.out.println( "***" );       
+
+        // * Print Item at Index of ArrayList
+        // * TODO: Clearer Printout: Index vs. Item
+        System.out.println( "*** Index - " + index_In + " | Item - " + item_In);
+
+        System.out.println( "***" );       
+        System.out.println();
+       
+        return;
+    }
+   
+    // * ArrayList: '.add( item )'
+    //
+    public static void scannerInputTo_AddLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )
+    {
+        // * Local Variable Declaration (with any Initialization)
+        //
+        Scanner scanner = new Scanner(System.in);
+        String     userInput_Item;
+         
+        // * Local Code
+        //       
+        // * Prompt User for 'First' Item Entry
+        // * TODO: Clarify Data-Type Required for User Input
+        System.out.println("> Please Enter Strings to Add on to the ArrayList, then Enter '-999' when Done.");
+
+        // * IMPORTANT: Use the more robust 'Integer.parseInt( scanner.nextLine() )'
+        // ** to also capture User's <Enter> Key (vs. 'scanner.nextInt()')
+        userInput_Item = scanner.nextLine();
+
+        // * While user not signal to stop data entry, then continue loop for data entry
+        while (!userInput_Item.equals("-999"))
+        {
+            // * Write/Add New Item at End of ArrayList
+            items_ObsInArrLst_InOut.add( userInput_Item );
+            // * Prompt User for 'Next' Item Entry           
+            userInput_Item = scanner.nextLine();
+        }
+       
+        // * Print All Items from ArrayList
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        return;
+    }
+       
+    // * ArrayList: '.remove( index )'
+    //
+    public static void scannerInputTo_RemoveLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )
+    {
+        // * Local Variable Declaration (with any Initialization) at Beginning Here
+        //
+        Scanner scanner = new Scanner(System.in);
+        int     userInput_Index;
+       
+        // * Local Code
+        //       
+        // * Prompt User for Index
+        System.out.println("> Please Enter Index value (0 - " + (items_ObsInArrLst_InOut.size() - 1) +") of ArrayList to Remove.");
+
+        // * IMPORTANT: Use the more robust 'Integer.parseInt( scanner.nextLine() )'
+        // ** to also capture User's <Enter> Key (vs. 'scanner.nextInt()')
+        userInput_Index = Integer.parseInt( scanner.nextLine() );
+
+        // * Boundary Check for Invalid Index Value
+        if( userInput_Index < 0 || userInput_Index >= items_ObsInArrLst_InOut.size() )
+        {
+            // * TODO: Clearer Printout
+            System.out.println("ERROR: Value not in the boundaries of Index.");
+        }
+        // * Boundary Check Passed for Valid Index Value       
+        else
+        {
+            // * Remove Item at Index of ArrayList
+            items_ObsInArrLst_InOut.remove( userInput_Index );
+        }
+       
+        // * Print All Items from ArrayList
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+       
+        return;
+    }  
+   
+    // * ArrayList: '.get( index )'
+    //
+    public static void scannerInputTo_GetLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )
+    {
+        // * Local Variable Declaration (with any Initialization) at Beginning Here
+        //
+        Scanner scanner = new Scanner(System.in);
+        int     userInput_Index;
+       
+        // * Local Code
+        //
+        // * Prompt User for Index
+        System.out.println("> Please Enter Index value (0 - " + (items_ObsInArrLst_InOut.size() - 1) +") of ArrayList to Read/Get");
+
+        // * IMPORTANT: Use the more robust 'Integer.parseInt( scanner.nextLine() )'
+        // ** to also capture User's <Enter> Key (vs. 'scanner.nextInt()')
+        userInput_Index = Integer.parseInt( scanner.nextLine() );
+       
+        // * Boundary Check for Invalid Index Value
+        if( userInput_Index < 0 || userInput_Index >= items_ObsInArrLst_InOut.size() )
+        {
+            // * TODO: Clearer Printout
+            System.out.println("ERROR: Value not in the boundaries of Index.");
+        }
+        // * Boundary Check Passed for Valid Index Value       
+        else
+        {
+            // * Print After Read/Get Item at Index of ArrayList
+            print_Item_ObInArrLst_Mth( userInput_Index, items_ObsInArrLst_InOut.get( userInput_Index ));
+        }
+       
+        return;
+    }       
+   
+    // * ArrayList: '.set( index, item )'
+    //
+    public static void scannerInputTo_SetLst_Mth( ArrayList<String> items_ObsInArrLst_InOut )
+    {
+        // * Local Variable Declaration (with any Initialization) at Beginning Here
+        //
+        // * Declare & Intialize 'scanner'
+        Scanner scanner = new Scanner(System.in);
+        int  userInput_Index;
+        String  userInput_Item;
+         
+        // * Local Code
+        //
+        // * Prompt User for Index
+        System.out.println("> Please Enter Index value (0 - " + (items_ObsInArrLst_InOut.size() - 1) +") of ArrayList to OverWrite/Set");
+
+        // * IMPORTANT: Since 'scanner.nextInt()' does not capture the User's <Enter> key,
+        // ** instead use the following to prevent such User's <Enter> key from corrupting subsequent User Inputs
+        userInput_Index = Integer.parseInt( scanner.nextLine() );       
+       
+        // * Boundary Check for Invalid Index Value
+        if( userInput_Index < 0 || userInput_Index >= items_ObsInArrLst_InOut.size() )
+        {
+            // * TODO: Clearer Printout
+            System.out.println("ERROR: Value not in the boundaries of Index");
+        }
+        // * Boundary Check Passed for Valid Index Value       
+        else
+        {
+            // * Prompt user to enter Item
+            // * TODO: Clarify Data-Type Required for User Input
+            System.out.println("> Please Enter String to OverWrite/Set");
+            userInput_Item =  scanner.nextLine();
+          
+            // * Write/Set New Item at Index of ArrayList
+            items_ObsInArrLst_InOut.set( userInput_Index, userInput_Item );
+           
+            // * Print All Items from ArrayList
+            print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        }
+        return;
+    }           
+    public static void scannerInputTo_UpperLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
+    {
+        // Convert the Items to UpperCase
+        ArrayList<String> currLst = new ArrayList<String>();
+        for (int i = 0; i < items_ObsInArrLst_InOut.size(); i++) {
+            String currItem = items_ObsInArrLst_InOut.get(i).toUpperCase();
+            currLst.add(currItem);
+        }
+        items_ObsInArrLst_InOut = currLst;
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        return;
+    }
+    public static void scannerInputTo_LowerLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
+    {
+        // Transform the Items to LowerCase
+        ArrayList<String> currLst = new ArrayList<String>();
+        for (int i = 0; i < items_ObsInArrLst_InOut.size(); i++) {
+            String currItem = items_ObsInArrLst_InOut.get(i).toLowerCase();
+            currLst.add(currItem);
+        }
+        items_ObsInArrLst_InOut = currLst;
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        return;
+    }
+    public static void scannerInputTo_CapitalizeLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
+    {
+        //Capitalizes Each Item in ArrayList
+        ArrayList<String> currLst = new ArrayList<String>();
+        String itemCap = "";
+        for (int i = 0; i < items_ObsInArrLst_InOut.size(); i++) {
+            // Turn all characters in ArrayList into lowercase
+            String currItem = items_ObsInArrLst_InOut.get(i).toLowerCase();
+            // Convert the first character into uppercase
+            String charCap = currItem.substring(0,1).toUpperCase();
+            // Append the capitalized character to the rest of the string
+            itemCap = charCap + currItem.substring(1);
+            currLst.add(itemCap);
+        }
+        items_ObsInArrLst_InOut = currLst;
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        return;
+    }
+    public static void scannerInputTo_SortLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
+    {
+        //Sorts the Array in Alphabetical Order using Collections.sort()
+        Collections.sort(items_ObsInArrLst_InOut);
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        return;
+    }
+    public static void scannerInputTo_ReverseSortLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
+    {
+        //Sorts the Array in reverse Alphabetical Order using Collections.reverseOrder()
+        Collections.sort(items_ObsInArrLst_InOut, Collections.reverseOrder());
+        print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
+        return;
+    }
+} 
+
+
+

@@ -233,6 +233,8 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
     
     public static void scannerInputTo_AddLstIndex_Mth( ArrayList<String> items_ObsInArrLst_InOut )
     {
+    Scanner Scan = new Scanner(System.in);
+    
     }
     // * ArrayList: '.remove( index )'
     //

@@ -335,31 +335,26 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
     public static void scannerInputTo_UpperLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
     {
         // Convert the Items to UpperCase
-        ArrayList<String> currLst = new ArrayList<String>();
         for (int i = 0; i < items_ObsInArrLst_InOut.size(); i++) {
             String currItem = items_ObsInArrLst_InOut.get(i).toUpperCase();
-            currLst.add(currItem);
+            items_ObsInArrLst_InOut.set(i, currItem);
         }
-        items_ObsInArrLst_InOut = currLst;
         print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
         return;
     }
     public static void scannerInputTo_LowerLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
     {
         // Transform the Items to LowerCase
-        ArrayList<String> currLst = new ArrayList<String>();
         for (int i = 0; i < items_ObsInArrLst_InOut.size(); i++) {
             String currItem = items_ObsInArrLst_InOut.get(i).toLowerCase();
-            currLst.add(currItem);
+            items_ObsInArrLst_InOut.set(i, currItem);
         }
-        items_ObsInArrLst_InOut = currLst;
         print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
         return;
     }
     public static void scannerInputTo_CapitalizeLst_Mth (ArrayList<String> items_ObsInArrLst_InOut)
     {
         //Capitalizes Each Item in ArrayList
-        ArrayList<String> currLst = new ArrayList<String>();
         String itemCap = "";
         for (int i = 0; i < items_ObsInArrLst_InOut.size(); i++) {
             // Turn all characters in ArrayList into lowercase
@@ -368,9 +363,8 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
             String charCap = currItem.substring(0,1).toUpperCase();
             // Append the capitalized character to the rest of the string
             itemCap = charCap + currItem.substring(1);
-            currLst.add(itemCap);
+            items_ObsInArrLst_InOut.set(i, itemCap);
         }
-        items_ObsInArrLst_InOut = currLst;
         print_Items_ObsInArrLst_Mth( items_ObsInArrLst_InOut );
         return;
     }
@@ -389,6 +383,4 @@ class T02_Project_D_VchsCodingDemo_ForStrings_AddOn
         return;
     }
 } 
-
-
 
